@@ -1,3 +1,17 @@
+
+
+<form class="simple_form new_idea" id="new_idea" action="/ideas" accept-charset="UTF-8" method="post">
+  <input type="hidden" name="authenticity_token" autocomplete="off">
+  <div class="mb-4 text optional idea_description">
+    <label class="block text optional text-sm font-medium text-gray-600" for="idea_description">Description</label>
+    <textarea class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out text optional" name="idea[description]" id="idea_description"></textarea>
+  </div>
+  <div class="mb-4 string optional idea_author">
+    <label class="block string optional text-sm font-medium text-gray-600" for="idea_author">Author</label>
+    <input class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out string optional" type="text" name="idea[author]" id="idea_author">
+  </div>
+  <input type="submit" name="commit" value="Submit" data-disable-with="Submit">
+</form>
 <div class="rounded overflow-hidden shadow-lg">
 <h1 class="text-2xl">This is my first app ever and I'm super excited to become a coder</h1>
 <% @ideas.each do |idea| %>
@@ -18,4 +32,3 @@
       </div>
     </div>
   <% end %>
-</div>
