@@ -1,34 +1,70 @@
+<button
+  data-modal-target="default-modal"
+  data-modal-toggle="default-modal"
+  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4
+         focus:outline-none focus:ring-blue-300 font-medium rounded-lg
+         text-sm px-5 py-2.5 text-center dark:bg-blue-600
+         dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  type="button">
+  Add New Idea
+</button>
 
+<div
+  id="default-modal"
+  tabindex="-1"
+  aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0
+         z-50 justify-center items-center w-full md:inset-0
+         h-[calc(100%-1rem)] max-h-full">
 
-<form class="simple_form new_idea" id="new_idea" action="/ideas" accept-charset="UTF-8" method="post">
-  <input type="hidden" name="authenticity_token" autocomplete="off">
-  <div class="mb-4 text optional idea_description">
-    <label class="block text optional text-sm font-medium text-gray-600" for="idea_description">Description</label>
-    <textarea class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out text optional" name="idea[description]" id="idea_description"></textarea>
-  </div>
-  <div class="mb-4 string optional idea_author">
-    <label class="block string optional text-sm font-medium text-gray-600" for="idea_author">Author</label>
-    <input class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out string optional" type="text" name="idea[author]" id="idea_author">
-  </div>
-  <input type="submit" name="commit" value="Submit" data-disable-with="Submit">
-</form>
-<div class="rounded overflow-hidden shadow-lg">
-<h1 class="text-2xl">This is my first app ever and I'm super excited to become a coder</h1>
-<% @ideas.each do |idea| %>
-  <h3><%= idea.description %></h3>
-  <h4><%= idea.author %></h4>
-<% end %>
+  <div class="relative p-4 w-full max-w-2xl max-h-full">
 
-  <div class="px-6 py-8 h-full">
-    <div class="font-bold text-xl mb-2">This is some text within the body</div>
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+      <!-- Form section -->
+      <div class="bg-white shadow-md rounded-xl p-6 mb-10">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800">
+          Share Your Idea 💡
+        </h2>
+
+        <%= simple_form_for Idea.new do |f| %>
+
+          <div class="mb-4">
+            <%= f.input :description,
+              label: "Description",
+              input_html: { class: "min-h-[120px]" } %>
+          </div>
+
+          <div class="mb-4">
+            <%= f.input :author, label: "Author" %>
+          </div>
+
+          <%= f.submit 'Submit',
+            class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                    font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2
+                    dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                    dark:focus:ring-blue-800' %>
+        <% end %>
+      </div>
+
+      <!-- Ideas list -->
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">
+        All Ideas
+      </h2>
+
+      <div class="space-y-4">
+        <% @ideas.each do |idea| %>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <p class="text-gray-800 font-medium">
+              <%= idea.description %>
+            </p>
+            <p class="text-sm text-gray-500 mt-1">
+              — <%= idea.author %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
   </div>
 </div>
-<div class="max-w-screen-xl mx-auto">
-  <% @ideas.each do |idea| %>
-    <div class="rounded overflow-hidden shadow-lg">
-      <div class="px-6 py-8 h-full">
-        <div class="font-bold text-xl mb-2"><%= idea.description %></div>
-        <p class="text-sm text-gray-700 "><%= idea.author %></p>
-      </div>
-    </div>
-  <% end %>

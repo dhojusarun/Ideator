@@ -1,3 +1,5 @@
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
 @import "tailwindcss";
 
 @theme {
@@ -5,3 +7,5 @@
   --font-pacifico: "Pacifico", "sans-serif";
   --font-dosis: "Dosis", "sans-serif";
 }
+
+
